@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 7.1 JavaScript Basics</title>
+<style>
+body { font-family: Arial; margin: 30px; max-width: 560px; }
+h2 { color: #1e3a8a; }
+h3 { margin-bottom: 4px; }
+p { font-size: 16px; margin-top: 4px; }
+button { padding: 8px 16px; font-size: 16px; }
+</style>
+</head>
+<body>
+<h2>Lab 7.1 JavaScript Basics</h2>
+
+<h3>1. Variables</h3>
+<p>
+<script type="text/javascript">
+var firstname;
+firstname = "Hege";
+document.write(firstname);
+document.write("<br />");
+firstname = "Tove";
+document.write(firstname);
+</script>
+</p>
+
+<h3>2. Changing HTML content</h3>
+<p id="demo">This text will change.</p>
+
+<h3>3. Handling user events</h3>
+<button id="myButton">Click me</button>
+<p id="clickMsg">Nothing clicked yet.</p>
+
+<h3>4. Conditional statements</h3>
+<p id="ifOut"></p>
+<p id="switchOut"></p>
+
+<h3>5. Functions</h3>
+<p id="funcOut"></p>
+
+<h3>6. Arrays</h3>
+<p id="arrOut"></p>
+
+<script>
+document.getElementById("demo").textContent = "Hello, JavaScript!";
+
+document.getElementById("myButton").addEventListener("click", function() {
+    document.getElementById("clickMsg").textContent = "Button clicked!";
+});
+
+let temperature = 25;
+let message;
+if (temperature > 30) {
+    message = "It's a hot day!";
+} else if (temperature >= 20 && temperature <= 30) {
+    message = "It's a pleasant day!";
+} else {
+    message = "It's a cold day!";
+}
+document.getElementById("ifOut").textContent = "Temperature " + temperature + ": " + message;
+
+let day = "Monday";
+let schedule;
+switch (day) {
+    case "Monday":
+        schedule = "Workout";
+        break;
+    case "Tuesday":
+        schedule = "Meeting";
+        break;
+    case "Wednesday":
+        schedule = "Shopping";
+        break;
+    default:
+        schedule = "Relaxation";
+}
+document.getElementById("switchOut").textContent = "Today's schedule is: " + schedule;
+
+function addNumbers(a, b) {
+    return a + b;
+}
+var sum = addNumbers(5, 3);
+document.getElementById("funcOut").textContent = "addNumbers(5, 3) = " + sum;
+
+var fruits = ["apple", "banana", "orange"];
+fruits.push("grape");
+document.getElementById("arrOut").textContent = "First fruit: " + fruits[0] +
+    ", total after push: " + fruits.length + " (" + fruits.join(", ") + ")";
+</script>
+</body>
+</html>

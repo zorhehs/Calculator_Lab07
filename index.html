@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="calculator">
+
+    <div class="topbar">
+        <span id="modeName">Standard Calculator</span>
+        <div class="menu-wrap">
+            <button id="dots" class="dots" aria-label="Open menu"
+                onclick="toggleMenu()">&#8942;</button>
+            <div id="submenu" class="submenu hidden">
+                <button data-mode="standard" onclick="setMode('standard')">Standard Mode</button>
+                <button data-mode="scientific" onclick="setMode('scientific')">Scientific Mode</button>
+                <button data-mode="unit" onclick="setMode('unit')">Unit Conversion</button>
+                <button data-mode="currency" onclick="setMode('currency')">Currency Conversion</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="calcPanel">
+        <input type="text" id="display" value="0" readonly>
+
+        <div id="sciKeys" class="keys sci hidden">
+            <button onclick="func('sin')">sin</button>
+            <button onclick="func('cos')">cos</button>
+            <button onclick="func('tan')">tan</button>
+            <button onclick="func('log')">log</button>
+            <button onclick="func('ln')">ln</button>
+            <button onclick="func('sqrt')">&radic;</button>
+            <button onclick="func('square')">x&sup2;</button>
+            <button onclick="press('^')">x&#696;</button>
+            <button onclick="press('&pi;')">&pi;</button>
+            <button onclick="press('(')">(</button>
+            <button onclick="press(')')">)</button>
+            <button onclick="func('fact')">n!</button>
+        </div>
+
+        <div class="keys">
+            <button class="clear" onclick="clearAll()">C</button>
+            <button onclick="backspace()">&#9003;</button>
+            <button onclick="func('percent')">%</button>
+            <button class="op" onclick="press('&divide;')">&divide;</button>
+
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button class="op" onclick="press('&times;')">&times;</button>
+
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button class="op" onclick="press('-')">&minus;</button>
+
+            <button onclick="press('1')">1</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button>
+            <button class="op" onclick="press('+')">+</button>
+
+            <button class="zero" onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+        <p id="note" class="note hidden">Angles are in degrees</p>
+    </div>
+
+    <div id="unitPanel" class="panel hidden">
+        <label>Category</label>
+        <select id="unitType" onchange="fillUnits()">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+        </select>
+
+        <label>Value</label>
+        <input type="number" id="unitInput" value="1" oninput="convertUnit()">
+
+        <label>From</label>
+        <select id="unitFrom" onchange="convertUnit()"></select>
+
+        <label>To</label>
+        <select id="unitTo" onchange="convertUnit()"></select>
+
+        <div class="result" id="unitResult"></div>
+    </div>
+
+    <div id="currencyPanel" class="panel hidden">
+        <label>Amount</label>
+        <input type="number" id="curInput" value="1" oninput="convertCurrency()">
+
+        <label>From</label>
+        <select id="curFrom" onchange="convertCurrency()"></select>
+
+        <label>To</label>
+        <select id="curTo" onchange="convertCurrency()"></select>
+
+        <div class="result" id="curResult"></div>
+        <p class="note">Fixed sample rates, not live rates</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
